@@ -20,11 +20,19 @@ public:
     {
         position.x = 0.0f;
         position.y = 0.0f;
+        velocity.x = 0.0f;
+        velocity.y = 0.0f;
+        scale.x = 1.0f;
+        scale.y = 1.0f;
     }
     TransformComponent(float x, float y)
     {
         position.x = x;
         position.y = y;
+        velocity.x = 0.0f;
+        velocity.y = 0.0f;
+        scale.x = 1.0f;
+        scale.y = 1.0f;
     }
 
     TransformComponent(Vector2D sc)

@@ -6,21 +6,20 @@
 class SpriteComponent : public Component
 {
 private:
-    TransformComponent* transform;
-    SDL_Texture* texture;
+    TransformComponent *transform;
+    SDL_Texture *texture;
     SDL_Rect srcRect, destRect;
 
 public:
-
     SpriteComponent() = default;
-    SpriteComponent(const char* path)
+    SpriteComponent(const char *path)
     {
         setTexture(path);
         srcRect.w = 32;
         srcRect.h = 32;
     }
 
-    SpriteComponent(const char* path, int w, int h)
+    SpriteComponent(const char *path, int w, int h)
     {
         srcRect.w = w;
         srcRect.h = h;
@@ -32,14 +31,14 @@ public:
         SDL_DestroyTexture(texture);
     }
 
-    void setTexture(const char* path)
+    void setTexture(const char *path)
     {
         texture = TextureManager::LoadTexture(path);
     }
 
     void init() override
     {
-        if(!entity->hasComponent<TransformComponent>())
+        if (!entity->hasComponent<TransformComponent>())
         {
             entity->addComponent<TransformComponent>();
         }
@@ -60,5 +59,4 @@ public:
     {
         TextureManager::Draw(texture, srcRect, destRect);
     }
-
 };

@@ -1,7 +1,7 @@
 
 CC = g++
-INCLUDES = -I. -I./Engine -I./Engine/ECS -I./lua/include/lua -I./SDL/include/SDL2 -I./SDL_Image/include/SDL2 -I./sol
-LDFLAGS = -L./lua/lib -L./SDL/lib -L./SDL_Image/lib -llua -lmingw32 -lSDL2main -lSDL2 -lSDL2_image
+INCLUDES = -I. -I./Engine -I./Engine/ECS -I./SDL/include/SDL2 -I./SDL_Image/include/SDL2 -I./physics/include
+LDFLAGS = -L./SDL/lib -L./SDL_Image/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image
 CFLAGS = -Wall -std=gnu++17 $(INCLUDES)
 
 SRC = $(wildcard Engine/*.cpp)
@@ -15,10 +15,10 @@ main.exe: $(OBJ)
 	$(CC) $^ $(LDFLAGS) -o bin\$@
 
 crun: clean main.exe
-	bin\main.exe
+	bin/main.exe
 
 run:
-	bin\main.exe
+	bin/main.exe
 
 .PHONY: clean
 clean:
