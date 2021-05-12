@@ -1,6 +1,6 @@
 
 CC = g++
-INCLUDES = -I. -I./Engine -I./Engine/ECS -I./SDL/include/SDL2 -I./SDL_Image/include/SDL2 -I./physics/include
+INCLUDES = -I. -I./Engine -I./Engine/ECS -I./SDL/include/SDL2 -I./SDL_Image/include/SDL2 
 LDFLAGS = -L./SDL/lib -L./SDL_Image/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image
 CFLAGS = -Wall -std=gnu++17 $(INCLUDES)
 

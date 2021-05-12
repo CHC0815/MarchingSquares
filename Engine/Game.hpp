@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include <SDL_Image.h>
 #include <vector>
+#include "InputManager.hpp"
 
 class ColliderComponent;
 
@@ -27,6 +28,12 @@ public:
     static SDL_Renderer *renderer;
     static SDL_Event event;
     static std::vector<ColliderComponent *> colliders;
+
+    static int mouse_x;
+    static int mouse_y;
+    static InputManager *inputManager;
+
+    static float deltaTime;
 
 private:
     int count = 0;

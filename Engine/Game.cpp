@@ -3,11 +3,19 @@
 #include "ECS/Components.hpp"
 #include "Vector2D.hpp"
 #include "Collision.hpp"
+#include "InputManager.hpp"
 
 SDL_Renderer *Game::renderer = nullptr;
 Manager manager;
 SDL_Event Game::event;
 std::vector<ColliderComponent *> Game::colliders;
+
+InputManager *Game::inputManager;
+
+int Game::mouse_x = 0;
+int Game::mouse_y = 0;
+
+float Game::deltaTime = 0.0;
 
 Game::Game()
 {
@@ -49,28 +57,32 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     {
         isRunning = false;
     }
+    inputManager = InputManager::Instance();
 
-    auto &entity = manager.createEntity();
-    entity.addComponent<TransformComponent>();
-    entity.addComponent<SpriteComponent>("assets/player.bmp", 230, 398);
-    entity.getComponent<TransformComponent>().scale = Vector2D(1, 1);
+    auto &tank = manager.createEntity();
+    tank.addComponent<TankComponent>();
 }
 
 void Game::handleEvents()
 {
-    SDL_PollEvent(&event);
-
-    switch (event.type)
+    while (SDL_PollEvent(&event))
     {
-    case SDL_QUIT:
-        isRunning = false;
-        break;
-    default:
-        break;
+
+        switch (event.type)
+        {
+        case SDL_QUIT:
+            isRunning = false;
+            break;
+
+        default:
+            break;
+        }
     }
+    inputManager->Update();
 }
 void Game::update()
 {
+    SDL_GetMouseState(&mouse_x, &mouse_y);
     manager.update();
 }
 
@@ -80,12 +92,14 @@ void Game::render()
     SDL_RenderClear(renderer);
 
     manager.draw();
-
     SDL_RenderPresent(renderer);
 }
 
 void Game::clean()
 {
+    InputManager::Release();
+    inputManager = NULL;
+
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     SDL_Quit();
