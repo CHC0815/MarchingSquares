@@ -4,6 +4,7 @@
 #include "Vector2D.hpp"
 #include "Collision.hpp"
 #include "InputManager.hpp"
+#include "ECS/MarchingSquaresComponent.hpp"
 
 SDL_Renderer *Game::renderer = nullptr;
 Manager manager;
@@ -59,8 +60,8 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     }
     inputManager = InputManager::Instance();
 
-    auto &tank = manager.createEntity();
-    tank.addComponent<TankComponent>();
+    auto &entity = manager.createEntity();
+    entity.addComponent<MarchingSquaresComponent>();
 }
 
 void Game::handleEvents()

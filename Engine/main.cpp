@@ -4,8 +4,8 @@
 
 Game *game = nullptr;
 
-static int WIDTH = 800;
-static int HEIGHT = 640;
+static int WIDTH = 1000;
+static int HEIGHT = 700;
 
 int main(int argc, char *argv[])
 {
