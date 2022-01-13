@@ -1,6 +1,6 @@
 #pragma once
 #include <SDL.h>
-#include <SDL_Image.h>
+#include <SDL_Image/include/SDL2/SDL_image.h>
 #include <vector>
 #include "InputManager.hpp"
 
