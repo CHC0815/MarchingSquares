@@ -125,7 +125,7 @@ private:
     std::vector<Line> LINES;
     const int width = 1000;
     const int height = 700;
-    const int step = 1;
+    const int step = 10;
     const float level = 1;
     float **values;
     std::vector<Circle> CIRCLES;
